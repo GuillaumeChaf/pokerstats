@@ -1,0 +1,38 @@
+.Player{
+  width:121px;
+  height:75px;
+  border-radius: 6px;
+  padding:0px;
+  position:absolute;
+}
+.row{
+  width:100%;
+  margin:0px;
+}
+.playerName{
+  font-size:16px;
+  padding:4px;
+  margin:0px;
+}
+#card_component{
+  margin-left: 5px;
+  margin-right: 5px;
+  height:100%;
+}
+.iconPlayer{
+  width:75%;
+  margin:2px;
+}
+.passiv{
+  border: 1.5px none white;
+  background:rgba(156,157,156,0.5);
+  opacity:0.4;
+}
+.activate{
+  background:rgba(156,157,156,0.7);
+  opacity:0.8;
+  border: 1.5px solid white;
+}
+.passiv > .justify-content-center{
+  pointer-events:none
+}

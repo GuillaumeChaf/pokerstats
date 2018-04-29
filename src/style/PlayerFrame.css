@@ -1,0 +1,68 @@
+.Frame{
+  position:absolute;
+  width:106px;
+  border-width: 1px;
+  border-style:solid;
+  margin: 2px;
+  padding: 4px;
+  background-color: #EAEAEA;
+}
+.Frame.activatedfalse{
+  opacity: 0.08;
+}
+.Frame.activatedfalse > *{
+  cursor: default;
+}
+.Frame.win{ border-color: green;}
+.Frame.finish{ border-color: orange;}
+.Frame.lose{ border-color: red;}
+.finishCombination.win{border-color: green;}
+.finishCombination.finish{ border-color: orange;}
+.finishCombination.lose{ border-color: red;}
+
+.playerFinalityButton{
+  width: 32px;
+  height: 32px;
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  margin: 4px;
+  border-width: 1.2px;
+  border-color: grey;
+}
+.playerFinalityButton.win{background-color:green;}
+.playerFinalityButton.finish{background-color:orange;}
+.playerFinalityButton.lose{background-color:red;}
+
+.openOutsButton{
+  height: 21px;
+  width: 13px;
+  position: absolute;
+}
+.combinationLabel{
+  font-size:13px;
+  position: absolute;
+  top:47px;
+}
+.finishCombination{
+  position: absolute;
+  top: 72px;
+  width: 96px;
+  height: 20px;
+  font-size: 12px;
+}
+.statNumber{
+  position: absolute;
+  bottom: 0px;
+  font-size: 30px;
+  margin-bottom: 6px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 80px;
+}
+button,select,option{
+  cursor: pointer;
+}
+.namePlayer{
+  font-weight: bold;
+}

@@ -1,0 +1,25 @@
+.App{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.App-header {
+  width:100%;
+  position:absolute;
+  background:rgba(46,44,44,0.82);
+  padding: 20px;
+  color: white;
+  z-index: 1;
+
+}
+.App-title {
+  font-size: 1.5em;
+}
+html, body{
+  background-color:rgba(46,44,44,0.82);
+  height: 100%;
+  width:100%
+}
+.App-MainAndDataPlayer{
+display:inline-flex;
+}

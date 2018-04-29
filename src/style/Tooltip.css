@@ -1,0 +1,17 @@
+
+.Tooltip{
+  display:inline-flex;
+  border:1px solid black;
+  width: 911px;
+  padding: 3px;
+  padding-left:30px;
+  background-color: rgba(101, 97, 88, 0.6);
+  bottom: 61px;
+  position:fixed;
+  left: 143px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.marge{
+  width:50px;
+}

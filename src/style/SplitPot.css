@@ -1,0 +1,25 @@
+.SplitPotBox{
+  position: absolute;
+  width: 22%;
+  height: 60px;
+  top: 100px;
+  left: 37%;
+  padding: 6px 14px;
+  background-color: rgba(196,196,196,0.65);
+  border:solid 2px black;
+}
+.SplitPotBox.activatedfalse{
+  border-width:0px;
+  background-color: rgb(196,196,196);
+  opacity: 0.2;
+}
+.titleAndStats > h2 {
+  font-size: 19px;
+}
+.titleAndStats{
+  display:inline-flex;
+}
+.stats{
+  margin-left: 16px;
+  font-size: 22px;
+}
