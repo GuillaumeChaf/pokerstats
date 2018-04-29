@@ -8,18 +8,16 @@ class SplitPot extends Component {
 
     super(props);
     this.state = {
-      activate: "activatedfalse"
     }
   }
 
   render() {
-    const divClass= "SplitPotBox " + this.state.activate
 
     return (
-      <div className={divClass}>
+      <div className="SplitPotBox">
         <div className="titleAndStats">
-          <h2> Split pot :</h2>
-          <p className="stats"> 38.8% </p>
+          <h2 className="title"> Split pot :</h2>
+          <h2 className="stats"> 38.8% </h2>
         </div>
         <div> </div>
       </div>
@@ -28,4 +26,3 @@ class SplitPot extends Component {
 }
 
 export default SplitPot;
-// cd ../../projetJS/pokerstats
