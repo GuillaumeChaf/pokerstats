@@ -9,7 +9,7 @@ class Icon extends Component{
     super(props);
     this.state = {
       value: this.props.value,
-      selected: "TooltipIcon notSelected"
+      selected: "notSelected"
     }
     this.clickIcon = this.clickIcon.bind(this);
   }
@@ -18,13 +18,17 @@ class Icon extends Component{
     let content;
     let picture;
 
-    if(isNaN(this.state.value) && parseInt(this.state.value) !== "interrogation"){
-      picture = require('../pictures/' + this.state.value + '.png');
+    const value = this.state.value
+    //cas des symboles (heart diamond spade clover)
+    if(isNaN(value) && value.length > 1 && value !== "interrogation"){
+      picture = require('../pictures/' + value + '.png');
       content =  <img src={picture} id='icon_img' alt='Icon' />
     }
-    else if(!isNaN(this.state.value) && parseInt(this.state.value) > 0 && parseInt(this.state.value) <= 14){
-      content = <p> {this.state.value} </p>
+    //cas de toutes les valeurs de entre 2 et A
+    else if(!isNaN(value) || value.length === 1){
+      content = <h2 className="iconContent"> {value} </h2>
     }
+    //cas d'interrogation
     else{
       picture = require('../pictures/interrogation.png');
       content =  <img src={picture} id='icon_img' alt='Icon' />
@@ -35,18 +39,21 @@ class Icon extends Component{
   clickIcon(){
 
     const select = this.state.selected
-    if(select === "TooltipIcon notSelected"){
-      this.setState({selected: "TooltipIcon Selected"})
+
+    if(this.state.value === "cross"){this.props.closeTooltip(); return}
+
+    if(select === "notSelected"){
+      this.setState({selected: "selected"})
     }
-    else if(select === "TooltipIcon Selected"){
-      this.setState({selected: "TooltipIcon notSelected"})
+    else if(select === "selected"){
+      this.setState({selected: "notSelected"})
     }
     this.props.tooltipGestion(this)
   }
 
   render(){
-    //if(this.state.value == "spade" || this.state.value == "4" )
-    //console.log(this)
+
+    const classButton = "TooltipIcon " + this.state.selected
     return (
       <button id="icon_component" className={this.state.selected} onClick = {this.clickIcon} >
         {this.getContent()}

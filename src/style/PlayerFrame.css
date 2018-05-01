@@ -29,10 +29,11 @@
   margin: 4px;
   border-width: 1.2px;
   border-color: grey;
+  background-size: 29.6px;
 }
-.playerFinalityButton.win{background-color:#0B871F;}
-.playerFinalityButton.finish{background-color:#EE9906;}
-.playerFinalityButton.lose{background-color:#D51505;}
+.playerFinalityButton.win{background-image:url("../pictures/crown.png");}
+.playerFinalityButton.finish{background-image:url("../pictures/flag.png");}
+.playerFinalityButton.lose{background-image:url("../pictures/skull.png");}
 
 .openOutsButton{
   height: 21px;

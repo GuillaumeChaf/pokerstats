@@ -32,4 +32,4 @@ class App extends Component {
 }
 
 export default App;
-// cd ../../projetJS/pokerstats
+  // cd ../../projetJS/pokerstats

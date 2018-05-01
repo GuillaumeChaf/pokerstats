@@ -22,11 +22,16 @@
   position: absolute;
   cursor:pointer;
 }
-.Selected{
-    border: 3px solid blue;
-    padding:0px;
+.selected{
+  border: 3px solid blue;
+  padding:0px;
 }
 .notSelected{
-    border:1px solid black;
-    padding:2px;
+  border:1px solid black;
+  padding:2px;
+}
+.iconContent{
+  font-size: 21px;
+  width: 100%;
+  font-weight: bold;
 }

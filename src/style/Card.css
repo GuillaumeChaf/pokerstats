@@ -34,9 +34,3 @@
   width:10px;
   height:10px;
 }
-.card_component.activatedfalse{
-  opacity: 0.4;
-}
-.card_component.activatedfalse > button{
-  cursor:default;
-}

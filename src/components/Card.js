@@ -20,6 +20,7 @@ class Card extends Component {
       activate: "activatedtrue"
     }
     this.updateValueCard = this.updateValueCard.bind(this)
+    this.closeTooltip = this.closeTooltip.bind(this)
   }
 
   openTooltip(tooltip){
@@ -30,15 +31,21 @@ class Card extends Component {
     }
   }
 
-  updateValueCard(value,symbol){
+  updateValueCard(value,symbolVal){
 
+    let symbol = symbolVal === null? "interrogation" : symbolVal
     this.setState({value,symbol,tooltip:false})
   }
 
+  closeTooltip(){
+
+    this.setState({tooltip:false})
+  }
+  //sert uniquement pour les cartes de table
   componentWillReceiveProps(nextProps){
 
     const tablePosition = this.props.tablePosition
-    if(tablePosition != undefined){
+    if(tablePosition !== undefined){
       const tableAct = nextProps.currentActivation
       if(tableAct < tablePosition){
         this.setState({activate: "activatedfalse"})
@@ -56,15 +63,14 @@ class Card extends Component {
     const sourceSymbol = require('../pictures/' + this.state.symbol + '.png');
     const sourceValue = require('../pictures/' + this.state.value + '.png');
     const cardClassName = "card card_component " + this.state.activate;
-    let disabled = "";
-    if(this.state.activate === "activatedfalse"){disabled = "disabled"}
+
     return (
         <div>
-          <button className={cardClassName} onClick={() => {this.openTooltip(true)}} disabled={disabled}>
+          <button className={cardClassName} onClick={() => {this.openTooltip(true)}}>
             {RealCard && <img src={sourceSymbol} className="symbolCardImg" alt="symbolImg" />}
             <img src={sourceValue} className={cardClass} alt="valueImg" />
           </button>
-          {this.state.tooltip && <Tooltip updateValueCard={this.updateValueCard}/>}
+          {this.state.tooltip && <Tooltip updateValueCard={this.updateValueCard} closeTooltip={this.closeTooltip}/>}
         </div>
     )
   }
