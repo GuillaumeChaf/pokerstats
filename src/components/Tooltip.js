@@ -8,11 +8,11 @@ class Tooltip extends Component{
   constructor(props){
 
     super(props);
-    console.log(document.getElementsByClassName('Main'))
 
     this.state = {
       symbolSelected : "none",
-      valueSelected : "none"
+      valueSelected : "none",
+      left : "0px"
     }
     this.updateTooltip = this.updateTooltip.bind(this);
   }
@@ -66,20 +66,25 @@ class Tooltip extends Component{
   }
 
   componentDidMount() {
-    console.log("jojo")
+
     window.addEventListener("resize", this.windowResize());
-ReactDOM.findDOMNode(component)
-  //  window.innerWidth
-  //  window.innerHeight
-}
+  }
+
+  componentWillUnmount() {
+     window.removeEventListener('resize', this.windowResize());
+   }
+
   windowResize(){
 
-console.log("bite")
-}
+    this.setState({left: window.innerWidth / 4})
+    console.log(window.innerWidth)
+    console.log(window.innerHeight)
+  }
   render() {
 
+  const tooltipStyle = {left: this.state.left}
     return(
-      <div className="Tooltip">
+      <div className="Tooltip" style={tooltipStyle}>
         <Icon id="interrogation" value="interrogation" tooltipGestion={this.updateTooltip}/>
         <div className="marge"></div>
         <Icon value="heart" tooltipGestion={this.updateTooltip}/>
