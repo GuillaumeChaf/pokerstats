@@ -65,26 +65,27 @@ class Tooltip extends Component{
     }
   }
 
-  componentDidMount() {
+  calculPosition(){
 
-    window.addEventListener("resize", this.windowResize());
+    const posY = this.props.position.top;
+    const posX = this.props.position.left;
+
+    let newY = parseInt(posY.replace('px',''))
+    let newX = parseInt(posX.replace('px',''))
+
+    newY = newY * -1 + 648
+    newX = newX * -1
+    let result = {
+      left : newX,
+      top : newY
+    }
+    return result;
   }
 
-  componentWillUnmount() {
-     window.removeEventListener('resize', this.windowResize());
-   }
-
-  windowResize(){
-
-    this.setState({left: window.innerWidth / 4})
-    console.log(window.innerWidth)
-    console.log(window.innerHeight)
-  }
   render() {
 
-  const tooltipStyle = {left: this.state.left}
     return(
-      <div className="Tooltip" style={tooltipStyle}>
+      <div className="Tooltip" style={this.calculPosition()}>
         <Icon id="interrogation" value="interrogation" tooltipGestion={this.updateTooltip}/>
         <div className="marge"></div>
         <Icon value="heart" tooltipGestion={this.updateTooltip}/>

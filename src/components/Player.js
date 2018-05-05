@@ -38,7 +38,7 @@ class Player extends Component {
   render() {
 
     return (
-      <div>
+      <div className="playerDiv">
         <div ref={input => {this.component = input;}}className="Player container passiv" style={this.state.position}>
           <div className="row">
             <h1 className="playerName col"> Joueur{this.props.number} </h1>
@@ -47,8 +47,8 @@ class Player extends Component {
             </div>
           </div>
           <div className="row justify-content-center">
-            <Card />
-            <Card />
+            <Card position={this.state.position}/>
+            <Card position={this.state.position}/>
           </div>
         </div>
         <PlayerFrame number={this.props.number} activate={this.state.activate}/>

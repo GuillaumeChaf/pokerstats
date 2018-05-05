@@ -5,12 +5,11 @@
   width: 911px;
   padding: 3px;
   padding-left:30px;
-  background-color: rgba(101, 97, 88, 0.6);
-  top: 640px;
-  position:fixed;
-  left: 143px;
+  background-color: rgba(150, 150, 150, 0.9);
+  position:absolute;
   margin-left: auto;
   margin-right: auto;
+  z-index: 1
 }
 .marge{
   width:50px;

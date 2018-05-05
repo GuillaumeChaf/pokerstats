@@ -65,12 +65,12 @@ class Card extends Component {
     const cardClassName = "card card_component " + this.state.activate;
 
     return (
-        <div>
+        <div className="cardDiv">
           <button className={cardClassName} onClick={() => {this.openTooltip(true)}}>
             {RealCard && <img src={sourceSymbol} className="symbolCardImg" alt="symbolImg" />}
             <img src={sourceValue} className={cardClass} alt="valueImg" />
           </button>
-          {this.state.tooltip && <Tooltip updateValueCard={this.updateValueCard} closeTooltip={this.closeTooltip}/>}
+          {this.state.tooltip && <Tooltip updateValueCard={this.updateValueCard} closeTooltip={this.closeTooltip} position={this.props.position}/>}
         </div>
     )
   }
