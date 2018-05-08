@@ -8,7 +8,6 @@ class Tooltip extends Component{
   constructor(props){
 
     super(props);
-
     this.state = {
       symbolSelected : "none",
       valueSelected : "none",
@@ -82,10 +81,13 @@ class Tooltip extends Component{
     return result;
   }
 
+  componentWillMount(){
+  //  console.log(this.refs)
+}
   render() {
 
     return(
-      <div className="Tooltip" style={this.calculPosition()}>
+      <div ref="Tooltip" className="Tooltip" style={this.calculPosition()}>
         <Icon id="interrogation" value="interrogation" tooltipGestion={this.updateTooltip}/>
         <div className="marge"></div>
         <Icon value="heart" tooltipGestion={this.updateTooltip}/>

@@ -21,6 +21,7 @@ class Card extends Component {
     }
     this.updateValueCard = this.updateValueCard.bind(this)
     this.closeTooltip = this.closeTooltip.bind(this)
+    this.openTooltip = this.openTooltip.bind(this)
   }
 
   openTooltip(tooltip){

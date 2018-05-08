@@ -23,12 +23,6 @@ class App extends Component {
       </div>
     );
   }
-
-  onResize(){
-  let newMargin = ReactDOM.findDOMNode(this.refs.container).getPropertyValue("border-radius")
-  //let newMargin = $('Tooltip').css('marginLeft')
-  console.log(newMargin)
-  }
 }
 
 export default App;
