@@ -1,0 +1,53 @@
+import React, { Component } from 'react';
+import "../style/Table.css";
+import Card from "./Card.js";
+
+class Table extends Component {
+
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     openCardNumber : 5
+  //   }
+  // }
+
+  updateOpenCardNumber(openCardNumber) {
+
+    // const openingCardNumber = e.target.attributes.openingcard.value
+    // let desactivatedButton = document.getElementsByClassName("activatedfalse selectButton")[0]
+    // if(desactivatedButton != undefined){
+    //   desactivatedButton.className = "selectButton"
+    // }
+    // e.target.className += " activatedfalse"
+    // this.setState({ openCardNumber })
+    this.props.onUpdateOpenCardNumber(openCardNumber)
+  }
+
+  render() {
+    const position = {
+      left : "331px",
+      top: "364px"
+    }
+    return (
+      <div className="table">
+        <div className="selectButton" style={{left: 3}} onClick={() => { this.updateOpenCardNumber(0) }}></div>
+        <Card 
+          tablePosition= "1" 
+          currentActivation={this.props.openCardNumber} 
+          position={position}
+          onValueSelected={this.onSelectTableCard} />
+        <Card tablePosition= "2" currentActivation={this.props.openCardNumber} position={position}/>
+        <Card tablePosition= "3" currentActivation={this.props.openCardNumber} position={position}/>
+        <div className="selectButton" style={{left:112}} onClick={() => { this.updateOpenCardNumber(3) }}> </div>
+        <div className="marge"> </div>
+        <Card tablePosition= "4" currentActivation={this.props.openCardNumber} position={position}/>
+        <div className="selectButton" style={{left:167}} onClick={() => {this.updateOpenCardNumber(4)}}> </div>
+        <div className="marge"> </div>
+        <Card tablePosition= "5" currentActivation={this.props.openCardNumber} position={position}/>
+        <div className="selectButton" style={{left:223}} onClick={() => {this.updateOpenCardNumber(5)}}> </div>
+      </div>
+    );
+  }
+}
+
+export default Table;

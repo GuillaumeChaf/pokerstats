@@ -35,22 +35,24 @@ class PlayerFrame extends Component {
   const number = Number.parseInt(this.props.number)
   let buttonOutsRight;
   let buttonOutsTop;
-      if(number < 5){buttonOutsRight = "-16.2px"} else {buttonOutsRight = "104.6px"};
+  let backImage;
+      if(number < 5){buttonOutsRight = "-16.2px"; backImage = "leftArrow"} else {buttonOutsRight = "104.6px"; backImage= "rightArrow"};
       if(number === 1 || number === 8){buttonOutsTop = "30px"}
       else if(number === 2 || number === 7){buttonOutsTop = "25px"}
       else if(number === 3 || number === 6){buttonOutsTop = "90px"}
       else if(number === 4 || number === 5){buttonOutsTop = "88px"}
 
       return {top:buttonOutsTop,
-              right:buttonOutsRight}
+              right:buttonOutsRight,
+              'background-url':"url('../pictures/"+backImage+".png')"}
   }
 
   getNextFinality(){
 
     const final = this.state.finality
-    if(final === "win"){this.setState({finality:"finish"})}
-    else if(final === "finish"){this.setState({finality:"lose"})}
-    else if(final === "lose"){this.setState({finality:"win"})}
+    if(final === "win"){this.setState({finality:"finish"}); this.props.player.finality = "finish";}
+    else if(final === "finish"){this.setState({finality:"lose"}); this.props.player.finality = "lose";}
+    else if(final === "lose"){this.setState({finality:"win"}); this.props.player.finality = "win";}
   }
 
   componentWillReceiveProps(nextProps){
@@ -59,6 +61,10 @@ class PlayerFrame extends Component {
     this.setState({activate:activateState})
   }
 
+  changeFinishCombianson(e){
+
+    this.props.player.finishCombinaison = e.target.value;
+  }
   render() {
 
     const divClass = this.state.finality + " Frame " + this.state.activate
@@ -72,7 +78,7 @@ class PlayerFrame extends Component {
         <button className={buttonFinalityClass} onClick={() => {this.getNextFinality()}} disabled={disabled}> </button>
         <button className="openOutsButton" style={this.getButtonOutsStyle()} disabled={disabled}> </button>
         <label className="combinationLabel"> With : </label>
-        <select className={selectorClass} disabled={disabled}>
+        <select className={selectorClass} onChange={(e) => {this.changeFinishCombianson(e)}} disabled={disabled}>
           <option className="combination"> No matter</option>
           <option className="combination"> Royal Flush</option>
           <option className="combination"> Straight Flush</option>

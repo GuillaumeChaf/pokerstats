@@ -37,8 +37,10 @@
 
 .openOutsButton{
   height: 21px;
-  width: 13px;
+  width: 15px;
   position: absolute;
+  background-size: 15px;
+  border-width: 0.5px;
 }
 .combinationLabel{
   font-size:13px;

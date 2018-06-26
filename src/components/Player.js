@@ -21,6 +21,7 @@ class Player extends Component {
 
   inverseActivation() {
 
+    this.props.player.inverseActivation();
     let activation = this.state.activate
     let component = this.component
     if(activation){
@@ -36,7 +37,6 @@ class Player extends Component {
   }
 
   render() {
-
     return (
       <div className="playerDiv">
         <div ref={input => {this.component = input;}}className="Player container passiv" style={this.state.position}>
@@ -47,11 +47,11 @@ class Player extends Component {
             </div>
           </div>
           <div className="row justify-content-center">
-            <Card position={this.state.position}/>
-            <Card position={this.state.position}/>
+            <Card card={this.props.player.card1} position={this.state.position}/>
+            <Card card={this.props.player.card2} position={this.state.position}/>
           </div>
         </div>
-        <PlayerFrame number={this.props.number} activate={this.state.activate}/>
+        <PlayerFrame number={this.props.number} player={this.props.player} activate={this.state.activate}/>
       </div>
     );
   }

@@ -1,0 +1,56 @@
+import React from 'react';
+import '../style/Main.css';
+import Player from "./Player.js"
+import Table from "./Table.js"
+import SplitPot from "./SplitPot.js"
+import background from '../pictures/table-spun.jpg'
+
+class Player = {
+  constructor() {
+    this.activated = false
+    this.card1 = new Card()
+    this.card2 = new Card()
+  }
+}
+
+class Game {
+  constructor() {
+    this.players = [
+      new Player()
+      new Player()
+      new Player()
+      new Player()
+      new Player()
+      new Player()
+      new Player()
+    ]
+  }
+}
+
+class Main extends React.Component {
+
+  constructor() {
+    this.game = new Game()
+    }
+  }
+
+  handlePlayerActivate = (player) => {
+    this.game.setPlayerActivate(player)
+    this.forceUpdate()
+  }
+
+  render() {
+    return (
+      <div className="Main">
+        {
+          this.game.players.map((player) => {
+            return <PlayerComponent player={player} onActive={() => this.handlePlayerActivate(player)} />
+          })
+
+        }
+      </div>
+    )
+  }
+}
+
+export default Main;

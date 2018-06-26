@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import '../style/Card.css';
 import '../style/bootstrap.min.css';
-import {calculs} from '../actions/calcul.js';
-import {calculs2} from '../actions/calcul.js';
+import ClassCard from '../modules/Card.js';
 import Tooltip from './Tooltip.js';
 
 class Card extends Component {
@@ -36,6 +35,7 @@ class Card extends Component {
 
     let symbol = symbolVal === null? "interrogation" : symbolVal
     this.setState({value,symbol,tooltip:false})
+    this.props.card.resetCard(symbol,value)
   }
 
   closeTooltip(){
