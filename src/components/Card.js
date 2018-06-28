@@ -15,33 +15,10 @@ class Card extends Component {
     this.state = {
       symbol:symbol,
       value:value,
-      tooltip: false,
       activate: "activatedtrue"
     }
-    this.updateValueCard = this.updateValueCard.bind(this)
-    this.closeTooltip = this.closeTooltip.bind(this)
-    this.openTooltip = this.openTooltip.bind(this)
   }
 
-  openTooltip(tooltip){
-
-    const tooltipNumber = document.getElementsByClassName('Tooltip').length;
-    if(tooltipNumber === 0){
-      this.setState({tooltip})
-    }
-  }
-
-  updateValueCard(value,symbolVal){
-
-    let symbol = symbolVal === null? "interrogation" : symbolVal
-    this.setState({value,symbol,tooltip:false})
-    this.props.card.resetCard(symbol,value)
-  }
-
-  closeTooltip(){
-
-    this.setState({tooltip:false})
-  }
   //sert uniquement pour les cartes de table
   componentWillReceiveProps(nextProps){
 
@@ -67,11 +44,10 @@ class Card extends Component {
 
     return (
         <div className="cardDiv">
-          <button className={cardClassName} onClick={() => {this.openTooltip(true)}}>
+          <button className={cardClassName} onClick={() => {this.props.openTooltip(this.props.card,this)}}>
             {RealCard && <img src={sourceSymbol} className="symbolCardImg" alt="symbolImg" />}
             <img src={sourceValue} className={cardClass} alt="valueImg" />
           </button>
-          {this.state.tooltip && <Tooltip updateValueCard={this.updateValueCard} closeTooltip={this.closeTooltip} position={this.props.position}/>}
         </div>
     )
   }

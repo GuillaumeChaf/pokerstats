@@ -65,6 +65,7 @@ class PlayerFrame extends Component {
 
     this.props.player.finishCombinaison = e.target.value;
   }
+
   render() {
 
     const divClass = this.state.finality + " Frame " + this.state.activate

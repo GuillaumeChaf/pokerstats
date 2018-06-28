@@ -47,8 +47,8 @@ class Player extends Component {
             </div>
           </div>
           <div className="row justify-content-center">
-            <Card card={this.props.player.card1} position={this.state.position}/>
-            <Card card={this.props.player.card2} position={this.state.position}/>
+            <Card card={this.props.player.card1} openTooltip={this.props.openTooltip} />
+            <Card card={this.props.player.card2} openTooltip={this.props.openTooltip} />
           </div>
         </div>
         <PlayerFrame number={this.props.number} player={this.props.player} activate={this.state.activate}/>

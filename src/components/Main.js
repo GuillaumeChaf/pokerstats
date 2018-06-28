@@ -3,6 +3,7 @@ import Game from '../modules/Game.js';
 import Player from "./Player.js";
 import Table from "./Table.js";
 import SplitPot from "./SplitPot.js";
+import Tooltip from './Tooltip.js';
 import '../style/Main.css';
 import background from '../pictures/table-spun.jpg'
 
@@ -10,8 +11,16 @@ class Main extends React.Component {
 
   constructor(){
     super();
+    this.state = {
+      tooltip : false,
+      tooltipCardClass : null,
+      tooltipCardComponent : null
+    }
     this.game = new Game();
     this.GETINF = this.GETINF.bind(this);
+    this.checkExistCard = this.checkExistCard.bind(this);
+    this.openTooltip = this.openTooltip.bind(this);
+    this.closeTooltip = this.closeTooltip.bind(this);
   }
 
   GETINF(e){
@@ -19,25 +28,55 @@ class Main extends React.Component {
    console.log(this.game);
   }
 
-  updateCard(Card){}//calculer si la carte est déja présente sur la table
-  openTooltip(){}//voir si le tooltip est deja présent, avec quelle carte...
+  checkExistCard(card){
 
+    const players = this.game.players
+    const table = this.game.table.cardsTable
+    for(var player in players){
+      if(card.equals(players[player].card1) || card.equals(players[player].card2)){
+        return true;
+      }
+    }
+    for(var Card in table){
+      if(card.equals(table[Card])){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  openTooltip(cardClass,cardComponent){
+
+    this.setState({tooltip : true,
+                  tooltipCardClass : cardClass,
+                  tooltipCardComponent : cardComponent})
+  }
+
+  closeTooltip(){
+
+    this.setState({
+      tooltip : false,
+      tooltipCardClass : null,
+      tooltipCardComponent : null
+    })
+}
   render() {
 
     return (
       <div className="Main">
         <img className="background" src={background} alt="backgroundTable"/>
         <SplitPot />
-        <Table table={this.game.table}/>
-        <Player number="1" player={this.game.players[1]} positionX="105px" positionY="148px" />
-        <Player number="2" player={this.game.players[2]} positionX="17px" positionY="344px" />
-        <Player number="3" player={this.game.players[3]} positionX="105px" positionY="526px" />
-        <Player number="4" player={this.game.players[4]} positionX="279px" positionY="559px" />
-        <Player number="5" player={this.game.players[5]} positionX="489px" positionY="559px" />
-        <Player number="6" player={this.game.players[6]} positionX="672px" positionY="519px" />
-        <Player number="7" player={this.game.players[7]} positionX="741px" positionY="343px" />
-        <Player number="8" player={this.game.players[8]} positionX="646px" positionY="148px" />
+        <Table table={this.game.table} openTooltip={this.openTooltip}/>
+        <Player number="1" player={this.game.players[1]} openTooltip={this.openTooltip} positionX="105px" positionY="148px" />
+        <Player number="2" player={this.game.players[2]} openTooltip={this.openTooltip} positionX="17px" positionY="344px" />
+        <Player number="3" player={this.game.players[3]} openTooltip={this.openTooltip} positionX="105px" positionY="526px" />
+        <Player number="4" player={this.game.players[4]} openTooltip={this.openTooltip} positionX="279px" positionY="559px" />
+        <Player number="5" player={this.game.players[5]} openTooltip={this.openTooltip} positionX="489px" positionY="559px" />
+        <Player number="6" player={this.game.players[6]} openTooltip={this.openTooltip} positionX="672px" positionY="519px" />
+        <Player number="7" player={this.game.players[7]} openTooltip={this.openTooltip} positionX="741px" positionY="343px" />
+        <Player number="8" player={this.game.players[8]} openTooltip={this.openTooltip} positionX="646px" positionY="148px" />
         <button onClick={this.GETINF}> GET INF </button>
+        {this.state.tooltip && <Tooltip cardClass={this.state.tooltipCardClass} checkExistCard={this.checkExistCard} cardComponent={this.state.tooltipCardComponent} closeTooltip={this.closeTooltip}/>}
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Icon from './Icon.js';
+import Card from '../modules/Card.js';
 import '../style/bootstrap.min.css';
 import '../style/Tooltip.css';
 
@@ -19,7 +20,7 @@ class Tooltip extends Component{
   updateTooltip(icon){
 
     if(icon.state.value === "interrogation"){
-      this.props.updateValueCard(0,null)
+      this.updateValueCard(0,null)
       return
     }
     this.setNewStates(icon)
@@ -31,8 +32,21 @@ class Tooltip extends Component{
     let iconSymbol = this.state.symbolSelected
 
     if(iconValue !== "none" && iconSymbol !== "none"){
-      this.props.updateValueCard(iconValue.state.value,iconSymbol.state.value)
+      this.updateValueCard(iconValue.state.value,iconSymbol.state.value)
     }
+  }
+
+  updateValueCard(value,symbolVal){
+
+    let symbol = symbolVal === null? "interrogation" : symbolVal
+    if(symbol ===  "interrogation" || this.props.checkExistCard(new Card(value,symbol))){
+      //erreur
+      this.props.closeTooltip()
+      return
+    }
+    this.props.cardComponent.setState({value,symbol,tooltip:false})
+    this.props.cardClass.resetCard(value,symbol)
+    this.props.closeTooltip()
   }
 
   setNewStates(icon){
@@ -81,13 +95,10 @@ class Tooltip extends Component{
     return result;
   }
 
-  componentWillMount(){
-  //  console.log(this.refs)
-}
   render() {
 
     return(
-      <div ref="Tooltip" className="Tooltip" style={this.calculPosition()}>
+      <div ref="Tooltip" className="Tooltip" /*style={this.calculPosition()}*/>
         <Icon id="interrogation" value="interrogation" tooltipGestion={this.updateTooltip}/>
         <div className="marge"></div>
         <Icon value="heart" tooltipGestion={this.updateTooltip}/>

@@ -1,15 +1,20 @@
 class Card{
 
-  constructor(){
+  constructor(value = null, symbol = null){
 
-     this.value = null;
-     this.symbol = null;
+     this.value = value;
+     this.symbol = symbol;
   }
 
-  resetCard(symbol,value){
+  resetCard(value,symbol){
 
     this.value = value;
     this.symbol = symbol;
+  }
+
+  equals(card){
+
+    return card.value == this.value && card.symbol == this.symbol;
   }
 }
 export default Card;
