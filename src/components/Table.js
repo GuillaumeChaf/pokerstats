@@ -30,7 +30,6 @@ class Table extends Component {
     }
     return (
       <div className="table">
-        <div openingcard='0' className="selectButton" style={{left:3}} onClick={(e) => {this.updateOpenCardNumber(e)}}></div>
         <Card tablePosition= "1" card={this.props.table.cardsTable[1]} currentActivation={this.state.openCardNumber} openTooltip={this.props.openTooltip}/>
         <Card tablePosition= "2" card={this.props.table.cardsTable[2]} currentActivation={this.state.openCardNumber} openTooltip={this.props.openTooltip}/>
         <Card tablePosition= "3" card={this.props.table.cardsTable[3]} currentActivation={this.state.openCardNumber} openTooltip={this.props.openTooltip}/>

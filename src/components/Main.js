@@ -4,6 +4,8 @@ import Player from "./Player.js";
 import Table from "./Table.js";
 import SplitPot from "./SplitPot.js";
 import Tooltip from './Tooltip.js';
+import Combination from '../modules/Combinations/Combination.js';//retirer a la fin (test)
+import Card from '../modules/Card.js';//retirer a la fin (test)
 import '../style/Main.css';
 import background from '../pictures/table-spun.jpg'
 
@@ -25,7 +27,13 @@ class Main extends React.Component {
 
   GETINF(e){
     e.preventDefault();
-   console.log(this.game);
+    const combination = new Combination()
+    let table = [new Card("K","spade"),new Card("K","diamond"),new Card("A","heart"),new Card("K","heart"),new Card("K","clover")]
+    let table2 = table.slice(0,table.length)
+    let table3 = table.slice(0,table.length)
+    console.log(combination.rankHigh(table))
+    console.log(combination.rankHighWithoutDouble(table2))
+    console.log(combination.topSymbolSerie(table3))
   }
 
   checkExistCard(card){

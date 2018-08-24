@@ -41,7 +41,7 @@ class Player extends Component {
       <div className="playerDiv">
         <div ref={input => {this.component = input;}}className="Player container passiv" style={this.state.position}>
           <div className="row">
-            <h1 className="playerName col"> Joueur{this.props.number} </h1>
+            <h1 className="playerName col"> Player {this.props.number} </h1>
             <div className="thumbnail col col-lg-2">
               <img  ref={input => {this.imgIcon = input;}} className="img-responsive iconPlayer" onClick={this.inverseActivation} src={logoPlus} alt="add/remove" />
             </div>
