@@ -2,8 +2,10 @@ class Combination{
 
   rankHigh(combinationCard){//testé
 
-    this.inverseCombinationToValue(combinationCard)
-    for(let i = 0; i < combinationCard.length; i++){
+    console.log(combinationCard)
+    combinationCard = this.inverseCombinationToValue(combinationCard)
+    console.log(combinationCard)
+    for(let i = 1; i < combinationCard.length; i++){
       let j = i;
       while(j > 0 && parseInt(combinationCard[j].value) > parseInt(combinationCard[j-1].value)){
         let copyCard = combinationCard[j-1];

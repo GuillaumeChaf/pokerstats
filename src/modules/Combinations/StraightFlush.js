@@ -5,8 +5,8 @@ class StraightFlush extends Combination{
 
   checkCombination(combinationCard){
 
-    this.topSymbolSerie(combinationCard)
-    this.inverseCombinationToValue(combinationCard)
+    combinationCard = this.topSymbolSerie(combinationCard)
+    combinationCard = this.inverseCombinationToValue(combinationCard)
     if(combinationCard.length < 3){//cas ou il n'y a pas 3 carte de la meme couleur
       return false
     }

@@ -5,8 +5,8 @@ class Straight extends Combination{
 
   checkCombination(combinationCard){
 
-    this.rankHighWithoutDouble(combinationCard)
-    this.inverseCombinationToValue(combinationCard)
+    combinationCard = this.rankHighWithoutDouble(combinationCard)
+    combinationCard = this.inverseCombinationToValue(combinationCard)
     if(combinationCard[0].value === "14"){//ajout de l'as en fin de suite pour l'unique cas de suite 5-4-3-2-A
       combinationCard.push(new Card("1",null))
     }

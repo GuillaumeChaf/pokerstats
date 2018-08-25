@@ -4,7 +4,7 @@ class Flush extends Combination{
 
   checkCombination(combinationCard){
 
-    this.topSymbolSerie(combinationCard)
+    combinationCard = this.topSymbolSerie(combinationCard)
     if(combinationCard.length >= 3){//cas ou il y a au moins 3 cartes de la meme couleur
       return true
     }

@@ -14,7 +14,7 @@ class TableCombination{
     this.fullHouse = instanceCalculation.combinations["fullHouse"].checkCombination(this.combinationCard)
     this.flush = instanceCalculation.combinations["flush"].checkCombination(this.combinationCard)
     this.straight = instanceCalculation.combinations["straight"].checkCombination(this.combinationCard)
-    this.threeOfAKind = instanceCalculation.combinations["threeOfAKind"].checkCombination(this.combinationCard)
+    this.threeOfAKind = true
     this.twoPair = true
     this.pair = true
     this.highCard = true

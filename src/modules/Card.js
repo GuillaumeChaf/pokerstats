@@ -14,7 +14,7 @@ class Card{
 
   equals(card){
 
-    return card.value == this.value && card.symbol == this.symbol;
+    return card.value === this.value && card.symbol === this.symbol;
   }
 }
 export default Card;
