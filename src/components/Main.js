@@ -7,6 +7,7 @@ import Tooltip from './Tooltip.js';
 import Combination from '../modules/Combinations/Combination.js';//retirer a la fin (test)
 import Card from '../modules/Card.js';//retirer a la fin (test)
 import Calculation from '../modules/Calculation.js';//retirer a la fin (test)
+import TableCombination from '../modules/TableCombination.js'; // retirer a la fin (test)
 import '../style/Main.css';
 import background from '../pictures/table-spun.jpg'
 
@@ -28,12 +29,13 @@ class Main extends React.Component {
 
   GETINF(e){
     e.preventDefault();
-    const table = [new Card("10","heart"),new Card("5","clover"),new Card("A","heart"),new Card("4","spade"),new Card("10","diamond")]
-    console.log(table)
+    const card1 = new Card("7","spade")
+    const card2 = new Card("K","diamond")
+    const table = [new Card("10","heart"),new Card("2","heart"),new Card("4","spade")]
+
     const calculation = new Calculation()
-    for(let comb in calculation.combinations){
-      console.log(comb + " : " + calculation.combinations[comb].checkCombination(table.slice(0,table.length)))
-    }
+    const tableCombination = new TableCombination(table.slice(0,table.length))
+    console.log(calculation.scoreCalculation(card1,card2,tableCombination))
   }
 
   checkExistCard(card){

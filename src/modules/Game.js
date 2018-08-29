@@ -35,7 +35,6 @@ class Game{
   loopRecursion(allFreeCards,cardCombination,numberCurrentLoop){
 
     if(numberCurrentLoop === 1/*parseInt(this.table.numberActivateCard)*/){
-      //this.testloop++;
       let scoreTable = {}
       let tableCombination = new TableCombination(cardCombination)
 

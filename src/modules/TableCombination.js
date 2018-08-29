@@ -9,11 +9,11 @@ class TableCombination{
 
     this.combinationCard = combinationCard
     this.length = combinationCard.length
-    this.straightFlush = instanceCalculation.combinations["straightFlush"].checkCombination(this.combinationCard)
-    this.fourOfAKind = instanceCalculation.combinations["fourOfAKind"].checkCombination(this.combinationCard)
-    this.fullHouse = instanceCalculation.combinations["fullHouse"].checkCombination(this.combinationCard)
-    this.flush = instanceCalculation.combinations["flush"].checkCombination(this.combinationCard)
-    this.straight = instanceCalculation.combinations["straight"].checkCombination(this.combinationCard)
+    this.straightFlush = instanceCalculation.combinations["straightFlush"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
+    this.fourOfAKind = instanceCalculation.combinations["fourOfAKind"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
+    this.fullHouse = instanceCalculation.combinations["fullHouse"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
+    this.flush = instanceCalculation.combinations["flush"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
+    this.straight = instanceCalculation.combinations["straight"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
     this.threeOfAKind = true
     this.twoPair = true
     this.pair = true

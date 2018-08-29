@@ -40,11 +40,15 @@ class Calculation {
   scoreCalculation(card1,card2,cardCombination){
 
     let score = 0
+    let fullCombination = cardCombination.combinationCard
+    fullCombination.push(card1)
+    fullCombination.push(card2)
+
     for(let combination in this.combinations){
       if(cardCombination[combination]){
-        score = this.combinations[combination].getScore(card1,card2,cardCombination)
+        score = this.combinations[combination].getScore(fullCombination.slice(0,fullCombination.length))
       }
-      if(score !== 0){break;}
+      if(score > 0){break;}
     }
     return score;
   }

@@ -13,7 +13,33 @@ class FourOfAKind extends Combination{
     return false
   }
 
-  getScore(card1,card2,combinationCard){}
+  getScore(combinationCard){
+
+    combinationCard = this.rankHigh(combinationCard)
+    combinationCard = this.inverseCombinationToValue(combinationCard)
+
+    let counter = 1;
+    let secondCard = null
+
+    for(let i = 1; i < combinationCard.length; i++){
+      if(parseInt(combinationCard[i].value) === parseInt(combinationCard[i - 1].value)){
+        counter++
+        if(counter === 4){
+          if(secondCard === null){
+            secondCard = parseInt(combinationCard[i + 1].value)
+          }
+          return 70000000000 + parseInt(combinationCard[i].value) * 100000000 + secondCard * 1000000
+        }
+      }
+      else{
+        if(secondCard === null){
+          secondCard = parseInt(combinationCard[i - 1].value)
+        }
+        counter = 1
+      }
+    }
+    return 0
+  }
 }
 
 

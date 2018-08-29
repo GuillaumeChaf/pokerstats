@@ -2,9 +2,7 @@ class Combination{
 
   rankHigh(combinationCard){//testé
 
-    console.log(combinationCard)
     combinationCard = this.inverseCombinationToValue(combinationCard)
-    console.log(combinationCard)
     for(let i = 1; i < combinationCard.length; i++){
       let j = i;
       while(j > 0 && parseInt(combinationCard[j].value) > parseInt(combinationCard[j-1].value)){
@@ -57,7 +55,7 @@ class Combination{
   inverseCombinationToValue(combinationCard){
 
     for(let card in combinationCard){
-      if(!Number.isInteger(combinationCard[card].value)){
+      if(Number.isNaN(parseInt(combinationCard[card].value))){
         this.inverseValue(combinationCard[card])
       }
     }
