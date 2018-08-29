@@ -29,13 +29,15 @@ class Main extends React.Component {
 
   GETINF(e){
     e.preventDefault();
-    const card1 = new Card("7","spade")
+  /*  const card1 = new Card("7","spade")
     const card2 = new Card("K","diamond")
     const table = [new Card("10","heart"),new Card("2","heart"),new Card("4","spade")]
 
     const calculation = new Calculation()
     const tableCombination = new TableCombination(table.slice(0,table.length))
-    console.log(calculation.scoreCalculation(card1,card2,tableCombination))
+    console.log(calculation.scoreCalculation(card1,card2,tableCombination))*/
+
+    this.game.calculStat()
   }
 
   checkExistCard(card){

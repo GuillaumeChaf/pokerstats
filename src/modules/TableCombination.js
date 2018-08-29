@@ -8,7 +8,6 @@ class TableCombination{
     Object.freeze(instanceCalculation);
 
     this.combinationCard = combinationCard
-    this.length = combinationCard.length
     this.straightFlush = instanceCalculation.combinations["straightFlush"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
     this.fourOfAKind = instanceCalculation.combinations["fourOfAKind"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
     this.fullHouse = instanceCalculation.combinations["fullHouse"].checkCombination(this.combinationCard.slice(0,this.combinationCard.length))
@@ -18,6 +17,17 @@ class TableCombination{
     this.twoPair = true
     this.pair = true
     this.highCard = true
+  }
+
+  getScore(){
+
+    const instanceCalculation = new Calculation();
+    Object.freeze(instanceCalculation);
+
+    if(this.combinationCard.length === 5){
+      return instanceCalculation.scoreCalculation(null,null,this)
+    }
+    return 0
   }
 }
 

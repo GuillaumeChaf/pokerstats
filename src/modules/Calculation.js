@@ -23,26 +23,16 @@ class Calculation {
         pair : new Pair(),
         highCard : new HighCard()
       }
-  }
-  return Calculation.instance;
-
-    /*  this.highCard = new HighCard()
-      this.pair = new Pair()
-      this.twoPair = new TwoPair()
-      this.threeOfAKind = new ThreeOfAKind()
-      this.straight = new Straight()
-      this.flush = new Flush()
-      this.fullHouse = new FullHouse()
-      this.fourOfAKind = new FourOfAKind()
-      this.straightFlush = new StraightFlush()*/
     }
+    return Calculation.instance;
+  }
 
   scoreCalculation(card1,card2,cardCombination){
 
     let score = 0
-    let fullCombination = cardCombination.combinationCard
-    fullCombination.push(card1)
-    fullCombination.push(card2)
+    let fullCombination = cardCombination.combinationCard.slice(0,cardCombination.combinationCard.length)
+    if(card1 !== null){fullCombination.push(card1)}
+    if(card2 !== null){fullCombination.push(card2)}
 
     for(let combination in this.combinations){
       if(cardCombination[combination]){

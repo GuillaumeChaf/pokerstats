@@ -19,29 +19,38 @@ class Game{
     this.table = new Table();
     this.splitPot = 0;
     this.activPlayers = [];
-    this.testloop = 0;
+    this.freeCards = []
   }
 
   calculStat(){
 
-    const cards = this.freeCardPicker();
+    this.freeCards = this.freeCardPicker();
+    console.log(this.freeCards)
     this.scoreReinitialisation();
     this.activPlayers = this.playerPicker();
 
-    this.loopRecursion(cards,[],0)
+    this.loopRecursion(this.freeCards,[],0)
 
+    for(let player in this.activPlayers){
+      console.log(this.activPlayers[player].id + " : " + this.activPlayers[player].trueStatistic)
+    }
+    console.log("Total : " + this.calculTotalCombinationNumber())
   }
 
   loopRecursion(allFreeCards,cardCombination,numberCurrentLoop){
 
-    if(numberCurrentLoop === 1/*parseInt(this.table.numberActivateCard)*/){
+
+    if(numberCurrentLoop === 3/*parseInt(this.table.numberActivateCard)*/){
+
       let scoreTable = {}
       let tableCombination = new TableCombination(cardCombination)
 
       for(let player in this.activPlayers){
         scoreTable[this.activPlayers[player].id] = this.activPlayers[player].getScore(tableCombination)
       }
-      this.updateWinningNumber(scoreTable);
+
+      let table = tableCombination.getScore()
+      this.updateWinningNumber(scoreTable,table);
     }
     else{
       const card = this.table.cardsTable[numberCurrentLoop + 1]
@@ -72,11 +81,11 @@ class Game{
     for(let player in this.players){
       this.players[player].trueStatistic = 0;
     }
-    this.testloop = 0;
     this.splitpot = 0;
   }
   freeCardPicker(){
 
+    debugger
     let allCards = [new Card("2","diamond"),new Card("3","diamond"), new Card("4","diamond"), new Card("5","diamond"),
                     new Card("6","diamond"),new Card("7","diamond"), new Card("8","diamond"), new Card("9","diamond"),
                     new Card("10","diamond"),new Card("J","diamond"), new Card("Q","diamond"), new Card("K","diamond"),new Card("A","diamond"),
@@ -104,6 +113,7 @@ class Game{
 
   removeCard(cardTable, card){
 
+    debugger
     let copyTable = cardTable.slice(0,cardTable.length);
     let index = copyTable.findIndex(element => element.value === card.value && element.symbol === card.symbol)
 
@@ -125,8 +135,42 @@ class Game{
     return result;
   }
 
-  updateWinningNumber(){
+  updateWinningNumber(scoreTable,table){
 
-}
+    let scoreMax = 0
+    let secondScore = 0
+
+    for(let player in scoreTable){
+      if(scoreTable[player] > scoreMax){
+        secondScore = scoreMax
+        scoreMax = scoreTable[player]
+      }
+      else if(scoreTable[player] > secondScore){
+        secondScore = scoreTable[player]
+      }
+    }
+    for(let player in scoreTable){
+      this.players[player].updateStats(scoreMax,secondScore,scoreTable[player],table)
+    }
+  }
+
+  calculTotalCombinationNumber(){
+
+    let numberCards = this.freeCards.length
+    let loops = this.table.numberActivateCard
+
+    let totalCombi = 1
+    let dividend = 1
+
+    while(loops > 0){
+      totalCombi *= numberCards
+      dividend *= loops
+      loops--
+      numberCards--
+    }
+    console.log(totalCombi)
+    console.log(dividend)
+    return totalCombi / dividend
+  }
 }
 export default Game;
