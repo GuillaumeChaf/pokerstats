@@ -8,7 +8,7 @@ class PlayerFrame extends Component {
     super(props);
     this.state = {
       activate: "activatedfalse",
-      finality: "win"
+      finality: "win",
     }
   }
   getBasicStyle(){
@@ -61,6 +61,11 @@ class PlayerFrame extends Component {
     this.setState({activate:activateState})
   }
 
+  /*componentDidUpdate(prevProps){
+
+    console.log(this.props.player.id + " : " + this.props.player.trueStatistic)
+  }*/
+
   changeFinishCombianson(e){
 
     this.props.player.finishCombinaison = e.target.value;
@@ -81,18 +86,18 @@ class PlayerFrame extends Component {
         <label className="combinationLabel"> With : </label>
         <select className={selectorClass} onChange={(e) => {this.changeFinishCombianson(e)}} disabled={disabled}>
           <option className="combination"> No matter</option>
-          <option className="combination"> Royal Flush</option>
-          <option className="combination"> Straight Flush</option>
-          <option className="combination"> Quads</option>
-          <option className="combination"> Full</option>
-          <option className="combination"> Flush</option>
-          <option className="combination"> Straight</option>
-          <option className="combination"> Trips</option>
-          <option className="combination"> Two pair</option>
-          <option className="combination"> One pair</option>
           <option className="combination"> High card</option>
+          <option className="combination"> One pair</option>
+          <option className="combination"> Two pair</option>
+          <option className="combination"> Trips</option>
+          <option className="combination"> Straight</option>
+          <option className="combination"> Flush</option>
+          <option className="combination"> Full</option>
+          <option className="combination"> Quads</option>
+          <option className="combination"> Straight Flush</option>
+
         </select>
-        <p className="statNumber"> </p>
+        <p className="statNumber">  {this.props.player.display}</p>
       </div>
     );
   }

@@ -25,7 +25,6 @@ class Game{
   calculStat(){
 
     this.freeCards = this.freeCardPicker();
-    console.log(this.freeCards)
     this.scoreReinitialisation();
     this.activPlayers = this.playerPicker();
 
@@ -34,13 +33,19 @@ class Game{
     for(let player in this.activPlayers){
       console.log(this.activPlayers[player].id + " : " + this.activPlayers[player].trueStatistic)
     }
-    console.log("Total : " + this.calculTotalCombinationNumber())
+    let totalCombination = this.calculTotalCombinationNumber()
+
+    console.log("Total : " + totalCombination)
+
+    for(let player in this.players){
+      this.players[player].calculPercentage(totalCombination)
+    }
   }
 
   loopRecursion(allFreeCards,cardCombination,numberCurrentLoop){
 
-
-    if(numberCurrentLoop === 3/*parseInt(this.table.numberActivateCard)*/){
+    if(numberCurrentLoop === 1){console.log(allFreeCards.length)}
+    if(numberCurrentLoop === parseInt(this.table.numberActivateCard)){
 
       let scoreTable = {}
       let tableCombination = new TableCombination(cardCombination)
@@ -85,7 +90,6 @@ class Game{
   }
   freeCardPicker(){
 
-    debugger
     let allCards = [new Card("2","diamond"),new Card("3","diamond"), new Card("4","diamond"), new Card("5","diamond"),
                     new Card("6","diamond"),new Card("7","diamond"), new Card("8","diamond"), new Card("9","diamond"),
                     new Card("10","diamond"),new Card("J","diamond"), new Card("Q","diamond"), new Card("K","diamond"),new Card("A","diamond"),
@@ -113,7 +117,6 @@ class Game{
 
   removeCard(cardTable, card){
 
-    debugger
     let copyTable = cardTable.slice(0,cardTable.length);
     let index = copyTable.findIndex(element => element.value === card.value && element.symbol === card.symbol)
 

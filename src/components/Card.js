@@ -13,8 +13,8 @@ class Card extends Component {
     let value = this.props.value === undefined? 0 : this.props.value;
 
     this.state = {
-      symbol:symbol,
-      value:value,
+      symbol: symbol,
+      value: value,
       activate: "activatedtrue"
     }
   }

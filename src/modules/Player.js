@@ -11,6 +11,7 @@ class Player{
     this.finality = "win";
     this.finishCombination = "No matter";
     this.trueStatistic = 0;
+    this.display = "";
   }
 
   inverseActivation(){
@@ -34,7 +35,15 @@ class Player{
 
   updateStats(scoreMax,secondScore,yourScore,scoreTable){
 
-    const finishCombinationTable = []
+    const finishCombinationTable = {"High Card" : 0,
+                                    "One pair" : 1,
+                                    "Two pair" : 2,
+                                    "Trips" : 3,
+                                    "Straight" : 4,
+                                    "Flush" : 5,
+                                    "Full" : 6,
+                                    "Quads" : 7,
+                                    "Straight Flush" : 8}
     const final = this.finality
     const comb = this.finishCombination
     if(final === "win"){
@@ -55,6 +64,19 @@ class Player{
       else{
         if(yourScore < scoreMax && Math.floor(yourScore/10000000000) === finishCombinationTable[this.finishCombination]){this.trueStatistic++}
       }
+    }
+  }
+
+  calculPercentage(totalCombination){
+
+    if(!this.activate){
+      this.display = ""
+    }
+    else{
+      let percentage = Math.round(this.trueStatistic/totalCombination * 100)
+      if(percentage > 99 && percentage < 100){this.display = "> 99%"}
+      else if(percentage < 1 && percentage > 0){this.display = "< 1%"}
+      else{this.display = Math.round(percentage) + "%"}
     }
   }
 }

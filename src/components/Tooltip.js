@@ -40,7 +40,8 @@ class Tooltip extends Component{
 
     let symbol = symbolVal === null? "interrogation" : symbolVal
     if(symbol ===  "interrogation" || this.props.checkExistCard(new Card(value,symbol))){
-      //erreur
+      this.props.cardComponent.setState({value : 0,symbol,tooltip:false})
+      this.props.cardClass.resetCard(null,null)
       this.props.closeTooltip()
       return
     }
