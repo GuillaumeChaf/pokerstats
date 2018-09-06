@@ -18,6 +18,8 @@ class HighCard extends Combination{
             parseInt(combinationCard[3].value) * 100 +
             parseInt(combinationCard[4].value)
     }
+
+  count(){}
 }
 
 export default HighCard

@@ -40,6 +40,8 @@ class FourOfAKind extends Combination{
     }
     return 0
   }
+
+  count(){}
 }
 
 

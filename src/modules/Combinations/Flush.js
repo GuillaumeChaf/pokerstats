@@ -27,6 +27,8 @@ class Flush extends Combination{
     score += parseInt(combinationCard[4].value)
     return score
   }
+
+  count(){}
 }
 
 

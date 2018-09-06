@@ -38,6 +38,8 @@ class TwoPair extends Combination{
     }
     return 0
   }
+
+  count(){}
 }
 
 

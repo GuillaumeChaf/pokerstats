@@ -28,6 +28,8 @@ class Pair extends Combination{
     }
     return 0
   }
+
+  count(){}
 }
 
 

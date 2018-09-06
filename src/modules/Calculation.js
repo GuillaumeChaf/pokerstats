@@ -42,6 +42,13 @@ class Calculation {
     }
     return score;
   }
+
+  count(activPlayers,cardCombination,grid,splitPot){
+    
+    for(let combination in this.combinations){
+      this.combinations[combination].count(activPlayers,cardCombination.slice(0,cardCombination.length),grid,splitPot)
+    }
+  }
 }
 
 export default Calculation;

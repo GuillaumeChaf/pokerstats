@@ -40,6 +40,8 @@ class Straight extends Combination{
     }
     return 0
   }
+
+  count(){}
 }
 
 

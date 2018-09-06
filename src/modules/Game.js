@@ -1,13 +1,15 @@
 import Player from './Player.js';
 import Table from './Table.js';
 import Card from './Card.js';
+import Calculation from './Calculation.js';
+import Grid from './Grid.js';
 import TableCombination from './TableCombination.js';
 
 class Game{
 
   constructor(){
 
-     this.players = {1 : new Player(1),
+     this.players = {1 : new Player(1), //tous les objets players
                       2 : new Player(2),
                       3 : new Player(3),
                       4 : new Player(4),
@@ -16,46 +18,45 @@ class Game{
                       7 : new Player(7),
                       8 : new Player(8)}
 
-    this.table = new Table();
-    this.splitPot = 0;
-    this.activPlayers = [];
-    this.freeCards = []
+    this.table = new Table(); //objet table
+    this.splitPot = 0; //nombre de cas ou soit la table l'emporte, soit 2 joueurs au moins l'emporte
+    this.activPlayers = []; //liste des joueurs qui ont été activées
+    this.freeCards = [] //toutes les cartes encore non utilisées avec lesquels les statistiques vont se faire.
+
+    this.grid = new Grid() //grille de commbinaison pour les calculs
+    this.remainingComb = 0 //nombre de combinaison total existante en fonction des joueurs et de la table
+
+    this.instanceCalculation = new Calculation(); //objet de calcul
+    Object.freeze(this.instanceCalculation);
   }
 
   calculStat(){
 
     this.freeCards = this.freeCardPicker();
+    this.grid.getGrid(this.freeCards)
+
     this.scoreReinitialisation();
     this.activPlayers = this.playerPicker();
-
+    this.remainingComb = this.calculTotalCombinationNumber();
+    this.loopNumber = 0
     this.loopRecursion(this.freeCards,[],0)
 
-    for(let player in this.activPlayers){
-      console.log(this.activPlayers[player].id + " : " + this.activPlayers[player].trueStatistic)
-    }
     let totalCombination = this.calculTotalCombinationNumber()
 
-    console.log("Total : " + totalCombination)
-
-    for(let player in this.players){
+    /*for(let player in this.players){
       this.players[player].calculPercentage(totalCombination)
+    }*/
+    for(let player in this.activPlayers){
+        console.log("Player : " + this.activPlayers[player].id + " : " + this.activPlayers[player].trueStatistic)
     }
   }
 
   loopRecursion(allFreeCards,cardCombination,numberCurrentLoop){
 
-    if(numberCurrentLoop === 1){console.log(allFreeCards.length)}
-    if(numberCurrentLoop === parseInt(this.table.numberActivateCard)){
+    if(numberCurrentLoop === parseInt(this.table.numberActivateCard) - 2){
 
-      let scoreTable = {}
-      let tableCombination = new TableCombination(cardCombination)
-
-      for(let player in this.activPlayers){
-        scoreTable[this.activPlayers[player].id] = this.activPlayers[player].getScore(tableCombination)
-      }
-
-      let table = tableCombination.getScore()
-      this.updateWinningNumber(scoreTable,table);
+      this.grid.resetGrid(cardCombination)
+      this.instanceCalculation.count(this.activPlayers,cardCombination,this.grid,this.splitPot)
     }
     else{
       const card = this.table.cardsTable[numberCurrentLoop + 1]
@@ -171,8 +172,7 @@ class Game{
       loops--
       numberCards--
     }
-    console.log(totalCombi)
-    console.log(dividend)
+
     return totalCombi / dividend
   }
 }

@@ -42,6 +42,8 @@ class ThreeOfAKind extends Combination{
     }
     return 0
   }
+
+  count(){}
 }
 
 

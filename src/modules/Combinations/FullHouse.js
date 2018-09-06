@@ -37,6 +37,8 @@ class FullHouse extends Combination{
     }
     return 0
   }
+
+  count(){}
 }
 
 
