@@ -37,7 +37,12 @@ class Grid{
   */
   updateGrid(player = false,card1,card2 = null){
 
+    this.revalueCard(card1)
+    this.revalueCard(card2)
     let index = card1.value + card1.symbol
+
+    if(this.grid[index] === undefined){return}
+
     if(card2 === null){
       for(let card in this.grid[index]){
         let activ = this.grid[index][card].activ
@@ -46,9 +51,12 @@ class Grid{
       }
     }
     else{
-      let activ = this.grid[index][card2.value + card2.symbol].activ
+      let index2 = card2.value + card2.symbol
+      if(this.grid[index][index2] === undefined){return}
+
+      let activ = this.grid[index][index2].activ
       if(player && activ){player.trueStatistic++}
-      this.grid[index][card2.value + card2.symbol].activ = false
+      this.grid[index][index2].activ = false
     }
   }
 
@@ -69,6 +77,19 @@ class Grid{
 
     let totalCards = this.grid.length - cardCombination.length
     this.allPossibilities = (totalCards * totalCards - totalCards)/2
+  }
+
+  revalueCard(card){
+
+    if(card === null){return}
+
+    switch(card.value){
+      case '14' : card.value = 'A'; break;
+      case '1' : card.value = 'A'; break;
+      case '13': card.value = 'K'; break;
+      case '12': card.value = 'Q'; break;
+      case '11': card.value = 'J'; break;
+    }
   }
 }
 

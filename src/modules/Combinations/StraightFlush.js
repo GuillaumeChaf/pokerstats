@@ -75,10 +75,10 @@ class StraightFlush extends Combination{
   subCount(player,gridCard){
 
     if(player.cards[0].value === "14"){//ajout de l'as en fin de suite pour l'unique cas de suite 5-4-3-2-A
-      player.cards.push(new Card("1",null))
+      player.cards.push(new Card("1",player.cards[0].symbol))
     }
     let cardCount = 0;
-    debugger
+
     for(let i = 0; i < player.cards.length; i++){
       if(player.cards[i + 2] != undefined &&
       parseInt(player.cards[i + 1].value) > parseInt(player.cards[i].value) - 5 &&
@@ -104,8 +104,9 @@ class StraightFlush extends Combination{
     const symbol = player.cards[0].symbol
     let tab = []
     let count = 0
+    debugger
     for(let i = 0; i < 5; i++){
-      if(player.cards[cardCount + count].value === pos - i){
+      if(player.cards[cardCount + count] !== undefined && parseInt(player.cards[cardCount + count].value) === pos - i){
         count++
       }
       else{
@@ -114,10 +115,17 @@ class StraightFlush extends Combination{
     }
 
     if(tab.length === 2){
-      gridCard.updateTable(player,tab[0],tab[1])
+      console.log(player.cards)
+      console.log(tab[0])
+      console.log(tab[1])
+      console.log("------------------------------")
+      gridCard.updateGrid(player.player,tab[0],tab[1])
     }
     else if(tab.length === 1){
-      gridCard.updateTable(player,tab[0])
+      console.log(player.cards)
+      console.log(tab[0])
+      console.log("------------------------------")
+      gridCard.updateGrid(player.player,tab[0])
     }
   }
 }

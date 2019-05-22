@@ -19,6 +19,7 @@ class Game{
                       8 : new Player(8)}
 
     this.table = new Table(); //objet table
+    this.tableCard = []//carte sur la table, trié
     this.splitPot = 0; //nombre de cas ou soit la table l'emporte, soit 2 joueurs au moins l'emporte
     this.activPlayers = []; //liste des joueurs qui ont été activées
     this.freeCards = [] //toutes les cartes encore non utilisées avec lesquels les statistiques vont se faire.
@@ -38,11 +39,12 @@ class Game{
     this.scoreReinitialisation();
     this.activPlayers = this.playerPicker();
     this.remainingComb = this.calculTotalCombinationNumber();
+    this.tableCard = this.sort(this.table.cardsTable)
     this.loopNumber = 0
     this.loopRecursion(this.freeCards,[],0)
 
     let totalCombination = this.calculTotalCombinationNumber()
-
+    console.log(this.tableCard)
     /*for(let player in this.players){
       this.players[player].calculPercentage(totalCombination)
     }*/
@@ -53,14 +55,14 @@ class Game{
 
   loopRecursion(allFreeCards,cardCombination,numberCurrentLoop){
 
-    if(numberCurrentLoop === parseInt(this.table.numberActivateCard) - 2){
+    if(numberCurrentLoop >= parseInt(this.table.numberActivateCard) - 2 && !this.tableCard[numberCurrentLoop + 1]){
 
-      this.grid.resetGrid(cardCombination)
+      this.grid.resetGrid(false,cardCombination)
       this.instanceCalculation.count(this.activPlayers,cardCombination,this.grid,this.splitPot)
     }
     else{
-      const card = this.table.cardsTable[numberCurrentLoop + 1]
-      if(card.value === null){
+      const card = this.tableCard[numberCurrentLoop + 1]
+      if(card && card.value === null){
 
         while(allFreeCards.length > 0){
           const loopCard = allFreeCards[0]
@@ -69,8 +71,8 @@ class Game{
           newCardCombination.push(loopCard)
 
           allFreeCards = this.removeCard(allFreeCards,loopCard)
+          this.grid.updateGrid(false,loopCard)
           this.loopRecursion(allFreeCards,newCardCombination,numberCurrentLoop +1)
-
         }
       }
       else{
@@ -174,6 +176,19 @@ class Game{
     }
 
     return totalCombi / dividend
+  }
+
+  sort(cards){
+
+    let result = []
+    let count = 0
+    for(let i = 1; i < cards.length; i++){
+      if(cards[i].value !== null){
+        result[count] = new Card(cards[i].value,cards[i].symbol)
+        count++
+      }
+    }
+    return result
   }
 }
 export default Game;
