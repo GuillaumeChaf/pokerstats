@@ -29,9 +29,16 @@ class Main extends React.Component {
   }
 
   GETINF(e){
-    e.preventDefault();
-    this.game.calculStat()
-    this.setState({calculDown : true})
+    fetch("http://localhost:8080/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result)
+        },
+        (error) => {
+          console.log("une erreur est survenue");
+        }
+      )
   }
 
   checkExistCard(card){
