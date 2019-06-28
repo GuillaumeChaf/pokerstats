@@ -29,14 +29,23 @@ class Main extends React.Component {
   }
 
   GETINF(e){
-    fetch("http://localhost:8080/")
+    fetch("http://localhost:8080/dataGame",
+    { method : 'post',
+      //mode : 'no-cors',
+      headers: {'Content-Type' : 'application/json',
+                'Accept' : 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-COntrol-Allow-Method' : 'POST'
+              },
+      body : JSON.stringify({lala : "lala"})
+    })
       .then(res => res.json())
       .then(
         (result) => {
           console.log(result)
         },
         (error) => {
-          console.log("une erreur est survenue");
+          console.log(/*"une erreur est survenue" + */error);
         }
       )
   }
